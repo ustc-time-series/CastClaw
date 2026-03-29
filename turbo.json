@@ -1,0 +1,20 @@
+{
+  "$schema": "https://v2-8-13.turborepo.dev/schema.json",
+  "globalEnv": ["CI", "CASTCLAW_DISABLE_SHARE"],
+  "globalPassThroughEnv": ["CI", "CASTCLAW_DISABLE_SHARE"],
+  "tasks": {
+    "typecheck": {},
+    "build": {
+      "dependsOn": [],
+      "outputs": ["dist/**"]
+    },
+    "castclaw#test": {
+      "dependsOn": ["^build"],
+      "outputs": []
+    },
+    "@castclaw/app#test": {
+      "dependsOn": ["^build"],
+      "outputs": []
+    }
+  }
+}

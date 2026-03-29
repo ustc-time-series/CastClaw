@@ -1,0 +1,22 @@
+{
+  "name": "castclaw-poe-auth",
+  "version": "0.0.3",
+  "description": "Poe OAuth authentication plugin for CastClaw",
+  "type": "module",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "open": "^10.0.0",
+    "poe-oauth": "*"
+  }
+}

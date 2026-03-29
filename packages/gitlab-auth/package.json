@@ -1,0 +1,24 @@
+{
+  "name": "castclaw-gitlab-auth",
+  "version": "2.0.0",
+  "description": "GitLab OAuth authentication plugin for CastClaw",
+  "type": "module",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "@castclaw/plugin": "workspace:*",
+    "@fastify/rate-limit": "^10.2.0",
+    "fastify": "^5.2.0",
+    "open": "^10.0.0"
+  }
+}

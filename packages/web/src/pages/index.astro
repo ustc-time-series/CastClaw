@@ -1,0 +1,203 @@
+---
+import cfg from "../../config.mjs"
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{cfg.name}</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="apple-mobile-web-app-title" content="CastClaw" />
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #f7efe2;
+        --panel: rgba(255, 250, 242, 0.9);
+        --ink: #171311;
+        --muted: #66584f;
+        --line: rgba(23, 19, 17, 0.12);
+        --accent: #b85c38;
+        --accent-2: #264653;
+        --shadow: 0 24px 80px rgba(38, 70, 83, 0.14);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        color: var(--ink);
+        background:
+          radial-gradient(circle at top left, rgba(184, 92, 56, 0.18), transparent 32%),
+          radial-gradient(circle at bottom right, rgba(38, 70, 83, 0.18), transparent 28%),
+          linear-gradient(180deg, #fffaf2 0%, var(--bg) 100%);
+        font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+      }
+
+      main {
+        width: min(980px, calc(100vw - 32px));
+        margin: 0 auto;
+        padding: 40px 0 56px;
+      }
+
+      .shell {
+        padding: 28px;
+        border: 1px solid var(--line);
+        border-radius: 28px;
+        background: var(--panel);
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(18px);
+      }
+
+      .eyebrow,
+      .meta,
+      .card code,
+      .actions a {
+        font-family: "IBM Plex Mono", "Fira Code", "SFMono-Regular", monospace;
+      }
+
+      .eyebrow {
+        color: var(--accent);
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        font-size: 12px;
+      }
+
+      h1 {
+        margin: 18px 0 14px;
+        font-size: clamp(40px, 8vw, 88px);
+        line-height: 0.92;
+        letter-spacing: -0.05em;
+      }
+
+      p {
+        margin: 0;
+        max-width: 720px;
+        color: var(--muted);
+        font-size: 18px;
+        line-height: 1.65;
+      }
+
+      .meta {
+        margin-top: 18px;
+        color: var(--accent-2);
+        font-size: 12px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 28px;
+      }
+
+      .actions a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 46px;
+        padding: 0 18px;
+        border-radius: 999px;
+        border: 1px solid var(--line);
+        color: var(--ink);
+        text-decoration: none;
+        background: rgba(255, 255, 255, 0.72);
+      }
+
+      .actions a.primary {
+        background: var(--ink);
+        border-color: var(--ink);
+        color: #fffaf2;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+        margin-top: 32px;
+      }
+
+      .card {
+        padding: 18px;
+        border-radius: 20px;
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.62);
+      }
+
+      .card h2 {
+        margin: 0 0 8px;
+        font-size: 24px;
+      }
+
+      .card p {
+        font-size: 16px;
+      }
+
+      .card code {
+        font-size: 13px;
+        color: var(--accent-2);
+      }
+
+      footer {
+        margin-top: 18px;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      @media (max-width: 720px) {
+        main {
+          width: min(100vw - 20px, 980px);
+          padding-top: 20px;
+        }
+
+        .shell {
+          padding: 22px;
+          border-radius: 24px;
+        }
+
+        .grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section class="shell">
+        <div class="eyebrow">CastClaw / TUI + Web</div>
+        <h1>Cleaned down to the two surfaces that still matter.</h1>
+        <p>
+          CastClaw now keeps a terminal-first TUI in <code>packages/castclaw</code> and a browser app in
+          <code>packages/app</code>. Extra product surfaces and repository documentation have been removed from the
+          main path.
+        </p>
+        <div class="meta">Feedback is routed through GitHub issues only.</div>
+        <div class="actions">
+          <a class="primary" href={cfg.github} target="_blank" rel="noreferrer">Open Repository</a>
+          <a href={cfg.issues} target="_blank" rel="noreferrer">Report an Issue</a>
+        </div>
+        <div class="grid">
+          <article class="card">
+            <h2>TUI</h2>
+            <p>The terminal agent and local server live in <code>packages/castclaw</code>.</p>
+          </article>
+          <article class="card">
+            <h2>Web</h2>
+            <p>The browser client lives in <code>packages/app</code>, while this landing page stays intentionally minimal.</p>
+          </article>
+        </div>
+      </section>
+      <footer>Issues only. No docs portal. No extra platform shells.</footer>
+    </main>
+  </body>
+</html>
