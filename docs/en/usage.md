@@ -39,23 +39,7 @@ Castclaw is a CLI-based AI agent framework for automated time-series forecasting
 ## Installation
 
 ```bash
-# Clone the repository
-git clone https://github.com/your-org/castclaw.git
-cd castclaw
-
-# Install JavaScript dependencies
-bun install
-
-# Set up the Python ML environment
-cd python
-uv sync
-cd ..
-
-# Build the CLI
-bun run --cwd packages/castclaw build
-
-# (Optional) Link the binary globally
-bun link --cwd packages/castclaw
+npm install -g castclaw
 ```
 
 After installation, verify the setup:
