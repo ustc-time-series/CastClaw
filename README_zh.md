@@ -2,7 +2,7 @@
 
 
 
-![CastClaw Logo](./logo/logo.png)
+![CastClaw Logo](./logo/logo.jpeg)
 
 [主页](https://agentr1.github.io/cast-claw/index.html) · [GitHub 仓库](https://github.com/SkyeGT/CastClaw) · [English](./README.md) · 中文
 
