@@ -51,14 +51,7 @@
 ## 快速开始
 
 ```bash
-# 克隆并安装
-git clone https://github.com/SkyeGT/CastClaw.git
-cd CastClaw
-bun install
-cd python && uv sync && cd ..
-
-# 构建 CLI
-bun run --cwd packages/castclaw build
+npm install -g castclaw 
 
 # 开始预测
 cd /path/to/your/dataset/project
