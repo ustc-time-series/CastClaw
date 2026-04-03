@@ -1,14 +1,16 @@
 # CastClaw
 
-CastClaw Logo
 
-[Homepage](https://agentr1.github.io/cast-claw/index.html) · [GitHub Repo](https://github.com/SkyeGT/CastClaw) · [English guide](./docs/en/usage.md) · [中文指南](./docs/zh/usage.md) · [README 中文](./README_zh.md)
+
+![CastClaw Logo](./logo/logo.png)
+
+[Homepage](https://agentr1.github.io/cast-claw/index.html) · [GitHub Repo](https://github.com/SkyeGT/CastClaw) · English · [Chinese](./README_zh.md)
 
 **Automated. Multi-agent. Fully interactive.**
 
 Drop in a CSV file and describe what you want to forecast. CastClaw orchestrates three specialized agents across your data—planning task definitions, running parallel model experiments, and generating comparative reports. Built-in reflection learns from each session and grows smarter as you use it.
 
-CastClaw Architecture Python ML Backend License
+![CastClaw Architecture](https://img.shields.io/badge/TUI%20%2B%20CLI-Ready-green) ![Python ML Backend](https://img.shields.io/badge/Python%203.10+-Compatible-blue) ![License](https://img.shields.io/badge/License-MIT-yellow)
 
 ## 🗞️ News
 
@@ -44,8 +46,6 @@ From automated data preprocessing → parallel model training → metric evaluat
 Mid-experiment, pause and inject domain knowledge: *"The last 30 days show overfitting—try a smaller look-back window."* Forecaster resets counters and adapts the next trial accordingly. No more black-box automation.
 
 ## Quick Start
-
-### English
 
 **Install — Option A: npm (recommended)**
 
@@ -107,74 +107,8 @@ Initialize a forecasting session for data/etth1.csv. Target: OT, time column: da
 horizon: 96 steps, lookback: 336. Use a 70/20/10 train/val/test split. Evaluate with MSE and MAE.
 ```
 
-Sample dataset (`datasets.zip`) on Google Drive: <https://drive.google.com/file/d/1HOCE20FQgLl0xCv_dOmLcTbN1RCZWwqd/view>
+Sample dataset (`datasets.zip`) on [Google Drive](https://drive.google.com/file/d/1HOCE20FQgLl0xCv_dOmLcTbN1RCZWwqd/view?usp=drive_link)
 
----
-
-### 中文
-
-**安装 — 方式一：npm 全局安装（推荐）**
-
-```bash
-npm install -g castclaw
-```
-
-**安装 — 方式二：从源码**
-
-```bash
-git clone https://github.com/ustc-time-series/CastClaw.git
-cd CastClaw
-bun install
-cd python && uv sync && cd ..
-bun run --cwd packages/castclaw build
-bun link --cwd packages/castclaw   # 可选：全局链接
-```
-
-**验证安装**
-
-```bash
-castclaw --version
-cd python && uv run python -c "from castclaw_ml import runner; print('OK')"
-```
-
-**配置 LLM**
-
-```bash
-# Anthropic（默认）
-export ANTHROPIC_API_KEY=sk-ant-...
-
-# 或 OpenAI / Google / OpenRouter
-export OPENAI_API_KEY=sk-...
-export GOOGLE_GENERATIVE_AI_API_KEY=...
-```
-
-在项目根目录创建 `castclaw.json`（示例）：
-
-```json
-{
-  "model": "anthropic/claude-sonnet-4-6"
-}
-```
-
-**开始预测**
-
-```bash
-# 进入数据集所在目录，启动 TUI
-cd /path/to/your/dataset
-castclaw
-
-# 或指定模型
-castclaw --model anthropic/claude-sonnet-4-6
-```
-
-TUI 启动后，用 `Ctrl+1/2/3` 切换代理；在 **Planner** 标签页（`Ctrl+1`）中输入任务描述，例如：
-
-```
-为 data/etth1.csv 初始化预测会话。目标列：OT，时间列：date，
-预测步长：96 步，回看长度：336。采用 70/20/10 分割，使用 MSE 和 MAE 评估。
-```
-
-示例数据集（`datasets.zip`）可从 Google Drive 下载：<https://drive.google.com/file/d/1HOCE20FQgLl0xCv_dOmLcTbN1RCZWwqd/view>
 
 ## 📋 Requirements
 
@@ -230,7 +164,7 @@ Stage 5 (Critic)     → Final report, visualizations, comparisons
 ## 📚 Documentation
 
 - **[English usage guide](./docs/en/usage.md)** — Installation, workflow, configuration, LLM providers  
-- **[中文使用指南](./docs/zh/usage.md)** — 与英文版结构一致：安装、工作流、配置、LLM  
+- **[Chinese usage guide](./docs/zh/usage.md)** — Same structure as the English guide: install, workflow, configuration, LLM  
 - **[Report Issues](https://github.com/SkyeGT/CastClaw/issues)** — GitHub Issues
 
 ## 📂 Repository Structure
@@ -268,7 +202,11 @@ MIT License — see [LICENSE](./LICENSE)
 ## 📫 Contact
 
 - **Issues & Feedback:** [GitHub Issues](https://github.com/SkyeGT/CastClaw/issues)
-- **Documentation:** [English](./docs/en/usage.md) · [中文](./docs/zh/usage.md)
+- **Documentation:** [English](./docs/en/usage.md) · [Chinese](./docs/zh/usage.md)
+
+## Acknowledgments
+
+This project gratefully acknowledges generous support from the **industry–university cooperation fund** of the **University of Science and Technology of China (USTC)** and **Huawei 2012 Labs Application Scenario Innovation Lab**. Computing resources for development and research are provided through **Huawei’s Ascend AI Hundred-School Program**.
 
 ---
 
