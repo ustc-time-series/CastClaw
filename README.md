@@ -162,4 +162,5 @@ MIT License — see [LICENSE](./LICENSE)
 
 ---
 
+**We welcome everyone to use domestic Ascend computing power to run foundation models. **
 **Made with ❤️ by the CastClaw team**
