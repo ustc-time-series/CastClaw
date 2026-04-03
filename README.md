@@ -12,7 +12,7 @@ Drop in a CSV file and describe what you want to forecast. CastClaw orchestrates
 
 ## 🗞️ News
 
-**[2026-04-02]** CastClaw open-sourced with complete documentation and multi-provider LLM support.  
+**[2026-03-31]** CastClaw open-sourced with complete documentation and multi-provider LLM support.  
 
 ## What makes CastClaw different
 
