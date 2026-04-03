@@ -119,6 +119,7 @@ Sample dataset (`datasets.zip`) on [Google Drive](https://drive.google.com/file/
 | [Python](https://python.org)     | ≥ 3.10    | ML backend for time-series models |
 | [uv](https://docs.astral.sh/uv/) | Latest    | Python dependency management      |
 | GPU (optional)                   | CUDA 12.8 | Deep learning model acceleration  |
+| Ascend NPU (optional)            | Coming soon | Deep learning acceleration on Huawei Ascend |
 
 
 ## 🤖 Supported Models (30+)

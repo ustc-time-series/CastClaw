@@ -120,6 +120,7 @@ TUI 启动后，用 `Ctrl+1/2/3` 切换代理；在 **Planner** 标签页（`Ctr
 | [Python](https://python.org) | ≥ 3.10 | 时序模型 ML 后端 |
 | [uv](https://docs.astral.sh/uv/) | 最新版 | Python 依赖管理 |
 | GPU（可选） | CUDA 12.8 | 深度学习模型加速 |
+| 昇腾 NPU（可选） | 即将支持 | 华为昇腾上的深度学习加速 |
 
 
 ## 🤖 支持模型（30+）
