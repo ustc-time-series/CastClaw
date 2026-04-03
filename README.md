@@ -6,7 +6,7 @@
 
 [Homepage](https://agentr1.github.io/cast-claw/index.html) · [GitHub Repo](https://github.com/SkyeGT/CastClaw) · English · [Chinese](./README_zh.md)
 
-**Automated. Multi-agent. Fully interactive.**
+**Autonomous. Multi-agent. Fully interactive.**
 
 Drop in a CSV file and describe what you want to forecast. CastClaw orchestrates three specialized agents across your data—planning task definitions, running parallel model experiments, and generating comparative reports. Built-in reflection learns from each session and grows smarter as you use it.
 
