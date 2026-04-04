@@ -210,7 +210,4 @@ MIT License — see [LICENSE](./LICENSE)
 This project gratefully acknowledges generous support from the **industry–university cooperation fund** of the **University of Science and Technology of China (USTC)** and **Huawei 2012 Labs Application Scenario Innovation Lab**. Computing resources for development and research are provided through **Huawei’s Ascend AI Hundred-School Program**.
 
 ---
-
-**We welcome everyone to use domestic Ascend computing power to run foundation models.**
-
 **Made with ❤️ by the CastClaw team**
