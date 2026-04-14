@@ -38,35 +38,17 @@ Castclaw is a CLI-based AI agent framework for automated time-series forecasting
 
 ## Installation
 
-**Option A: npm (recommended)**
+**npm**
 
 ```bash
 npm install -g castclaw
 ```
 
-**Option B: Build from source**
-
-```bash
-git clone https://github.com/ustc-time-series/CastClaw.git
-cd CastClaw
-
-bun install
-
-cd python
-uv sync
-cd ..
-
-bun run --cwd packages/castclaw build
-
-# (Optional) Link the binary globally
-bun link --cwd packages/castclaw
-```
 
 After installation, verify the setup:
 
 ```bash
 castclaw --version
-cd python && uv run python -c "from castclaw_ml import runner; print('OK')"
 ```
 
 ---
@@ -78,9 +60,6 @@ cd python && uv run python -c "from castclaw_ml import runner; print('OK')"
 ```bash
 cd /path/to/your/dataset
 castclaw
-
-# Or pass a model explicitly
-castclaw --model anthropic/claude-sonnet-4-6
 ```
 
 2. The TUI opens three tabs — **Planner**, **Forecaster**, and **Critic** — corresponding to the three research phases.
