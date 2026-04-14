@@ -47,28 +47,17 @@ Mid-experiment, pause and inject domain knowledge: *"The last 30 days show overf
 
 ## Quick Start
 
-**Install — Option A: npm (recommended)**
+**Install — npm**
 
 ```bash
 npm install -g castclaw
 ```
 
-**Install — Option B: from source**
-
-```bash
-git clone https://github.com/ustc-time-series/CastClaw.git
-cd CastClaw
-bun install
-cd python && uv sync && cd ..
-bun run --cwd packages/castclaw build
-bun link --cwd packages/castclaw   # optional: global link
-```
 
 **Verify**
 
 ```bash
 castclaw --version
-cd python && uv run python -c "from castclaw_ml import runner; print('OK')"
 ```
 
 **LLM configuration**
