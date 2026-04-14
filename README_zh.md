@@ -48,34 +48,23 @@
 ## 快速开始
 
 
-**方式一：npm 全局安装（推荐）**
+**npm 全局安装（推荐）**
 
 ```bash
 npm install -g castclaw
 ```
 
-**方式二：从源码**
-
-```bash
-git clone https://github.com/ustc-time-series/CastClaw.git
-cd CastClaw
-bun install
-cd python && uv sync && cd ..
-bun run --cwd packages/castclaw build
-bun link --cwd packages/castclaw   # 可选：全局链接
-```
 
 **验证安装**
 
 ```bash
 castclaw --version
-cd python && uv run python -c "from castclaw_ml import runner; print('OK')"
 ```
 
 **配置 LLM**
 
 ```bash
-# Anthropic（默认）
+# Anthropic
 export ANTHROPIC_API_KEY=sk-ant-...
 
 # 或 OpenAI / Google / OpenRouter
