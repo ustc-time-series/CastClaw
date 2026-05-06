@@ -4,7 +4,7 @@
 
 ![CastClaw Logo](./logo/logo.jpeg)
 
-[Homepage](https://agentr1.github.io/cast-claw/index.html) · [GitHub Repo](https://github.com/SkyeGT/CastClaw) · English · [Chinese](./README_zh.md)
+[Homepage](https://ustc-time-series.github.io/cast-claw/) · [GitHub Repo](https://github.com/SkyeGT/CastClaw) · English · [Chinese](./README_zh.md)
 
 **Autonomous. Multi-agent. Fully interactive.**
 
