@@ -4,7 +4,7 @@
 
 ![CastClaw Logo](./logo/logo.jpeg)
 
-[主页](https://agentr1.github.io/cast-claw/index.html) · [GitHub 仓库](https://github.com/SkyeGT/CastClaw) · [English](./README.md) · 中文
+[主页](https://ustc-time-series.github.io/cast-claw/) · [GitHub 仓库](https://github.com/SkyeGT/CastClaw) · [English](./README.md) · 中文
 
 **自主化。多智能体。全交互式。**
 
