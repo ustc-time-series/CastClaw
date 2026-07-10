@@ -14,6 +14,10 @@ Drop in a CSV file and describe what you want to forecast. CastClaw orchestrates
 
 ## 🗞️ News
 
+**[2026-07-04]** CastClaw adds Prediction Prior workflows: users can provide an existing forecast as a full aligned CSV, skip model search, and let CastClaw validate and improve the prior through deep generative prediction reasoning.
+
+**[2026-06-18]** CastClaw introduces Generative Prediction Reasoning, a validation-checked rule-skill workflow that refines raw forecasts with forecast-time-visible context while preserving raw and adjusted results separately.
+
 **[2026-04-30]** CastClaw 1.2.1 released: Critic Agent now automatically exports the best model file, parameters, and related artifacts as a reusable workflow.
 
 **[2026-04-22]** CastClaw 1.2.0 released with Auto mode, Hugging Face mirror support for foundation models such as Chronos, and UI updates.
@@ -41,6 +45,12 @@ After each forecasting task, CastClaw reflects on what worked and encodes the pa
 
 💾 **It remembers your preferences**  
 Captures your domain terminology, preferred metrics, output format, and evaluation priorities across sessions. Every conversation builds on what it learned from your previous work.
+
+🧩 **It refines forecasts with validated reasoning skills**
+CastClaw can optionally turn forecast-time-visible context—calendar effects, exogenous variables, expert rules, or user-submitted priors—into structured adjustment skills. Each skill is tested on held-out validation data before it can be applied to final forecasts.
+
+🔁 **It can improve your own forecast priors**
+If you already have a forecast from another model or business system, submit it as an aligned Prediction Prior CSV. CastClaw can skip model search, validate the prior, and reuse the Generative Prediction Reasoning workflow to improve it.
 
 🛠️ **It extends with custom skills**  
 Write your own skills—prompt templates or embedded Python/SQL logic—and the agents will call them just like built-in skills. Combined with session learning, CastClaw builds a library tailored to your forecasting workflows.
@@ -114,12 +124,11 @@ Sample dataset (`datasets.zip`) on [Google Drive](https://drive.google.com/file/
 | [Python](https://python.org)     | ≥ 3.10    | ML backend for time-series models |
 | [uv](https://docs.astral.sh/uv/) | Latest    | Python dependency management      |
 | GPU (optional)                   | CUDA 12.8 | Deep learning model acceleration  |
-| Ascend NPU (optional)            | Atlas 800 A2/A3【Ascend HDK 25.5.1】 | Deep learning acceleration on Huawei Ascend |
 
 
 ## 🤖 Supported Models (30+)
 
-**Statistical:** ARIMA, ETS, Theta  
+**Statistical:** ARIMA, AutoARIMA, ETS, ExponentialSmoothing, SimpleExponentialSmoothing, Holt, HoltWinters, Theta
 **Deep Learning:** DLinear, NLinear, PatchTST, TimesNet, iTransformer, Autoformer, …  
 **Foundation Models:** Chronos (Amazon), TimesFM (Google), Moirai (Salesforce)
 

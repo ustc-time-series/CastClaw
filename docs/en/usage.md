@@ -12,9 +12,11 @@ Castclaw is a CLI-based AI agent framework for automated time-series forecasting
 - [Project Structure](#project-structure)
 - [Forecasting Workflow](#forecasting-workflow)
   - [Phase 1: Initialize](#phase-1-initialize)
+    - [Optional: Prediction Prior](#optional-prediction-prior)
   - [Phase 2: Pre-Forecast Analysis](#phase-2-pre-forecast-analysis)
   - [Phase 3: Skills Review](#phase-3-skills-review)
   - [Phase 4: Experiment Loop](#phase-4-experiment-loop)
+    - [Optional: Generative Prediction Reasoning](#optional-generative-prediction-reasoning)
   - [Phase 5: Post-Forecast Report](#phase-5-post-forecast-report)
 - [Agent Roles](#agent-roles)
 - [Constraint File (CAST.md)](#constraint-file-castmd)
@@ -91,16 +93,20 @@ your-project/
 │   ├── skills/                 # generated model-family skill files
 │   ├── runs/                   # one directory per experiment run
 │   │   └── <run_id>/
+│   │       ├── predictions.csv # raw prediction outputs
 │   │       ├── train.log       # raw training output
-│   │       └── eval.json       # evaluation metrics
+│   │       └── eval.json       # raw evaluation metrics
+│   ├── user-prior/             # user-submitted prediction-prior manifests (optional)
+│   ├── adjustments/            # validated reasoning skills and adjusted outputs (optional)
+│   ├── best-model/             # exported final package with raw/adjusted artifacts
 │   ├── reports/
 │   │   ├── qualitative.md      # domain research report
 │   │   ├── quantitative.json   # statistical data analysis
 │   │   └── pre-forecast.md     # fused analysis report
-│   └── viz/                    # visualization outputs
-├── history.jsonl               # full experiment history
-├── best.json                   # current best result
-└── budget.json                 # experiment budget tracking
+│   ├── viz/                    # visualization outputs
+│   ├── history.jsonl           # full experiment history
+│   ├── best.json               # current best result
+│   └── budget.json             # experiment budget tracking
 ```
 
 ---
@@ -120,7 +126,9 @@ Start by defining your forecasting task. The Planner will ask for:
 - Time column (datetime index)
 - Prediction horizon (how many steps ahead)
 - Sequence/look-back length
-- Train/val/test split ratios
+- Train/val/test split ratios or timestamp boundaries
+- Optional forecast gap between the history window and evaluated horizon
+- Optional unified window stride for training and evaluation
 - Evaluation metrics (MSE, MAE, WAPE, MASE)
 - Model families to consider
 
@@ -133,7 +141,22 @@ Use 70/20/10 train/val/test split. Evaluate with MSE and MAE.
 Consider all model families.
 ```
 
+You can also define timestamp splits and non-contiguous windows directly in the prompt:
+
+```
+Use timestamp boundaries 2025-06-30 09:30 and 2025-09-30 09:30.
+lookback_window = 711, predicted_window = 96, forecast_gap = 57, stride = 96.
+```
+
 The Planner calls `forecast_state init` to create the `.forecast/` directory, then `forecast_task` to freeze `task.json`.
+
+#### Optional: Prediction Prior
+
+If you already have an external forecast, CastClaw can use it as a **Prediction Prior**. After the task is defined, CastClaw may ask whether you want to submit a prior CSV.
+
+The prior CSV must be a full dataset aligned with the real dataset: same row count, column names, column order, timestamps, frequency, and exogenous variables. The training target values must stay unchanged; only validation/test target values may be replaced by your prior forecast.
+
+When the prior passes validation, CastClaw enters `UserPrior` mode: it skips model-zoo search and repeated model training, treats the submitted forecast as the raw prediction baseline, and directly runs deep Generative Prediction Reasoning to validate whether the prior can be improved.
 
 **Defining Constraints (optional)**
 
@@ -219,6 +242,20 @@ The Forecaster records your input as expert feedback, resets the no-improvement 
 - Consecutive no-improvement threshold → triggers human-in-the-loop (HITL) pause
 - Consecutive crash threshold → stops the loop
 
+#### Optional: Generative Prediction Reasoning
+
+During the Forecaster stage, CastClaw can optionally run **Generative Prediction Reasoning**. In manual mode, CastClaw asks whether to keep raw forecasts, use lightweight reasoning, or use deep reasoning. In Auto mode, the agent can make this decision automatically.
+
+The reasoning workflow is validation-checked:
+
+1. Freeze the eligible source model set or `UserPrior` run.
+2. Use the front half of the validation split to build diagnostics from raw predictions, residual patterns, timestamps, horizons, and forecast-time-visible exogenous variables.
+3. Ask the LLM to propose structured candidate skills, such as calendar rules, exogenous-variable rules, horizon profiles, or compound rules.
+4. Apply each candidate with deterministic code on the back half of the validation split.
+5. Lock only validated skills before entering the Critic stage.
+
+Raw predictions are never overwritten. Adjusted predictions, adjusted metrics, candidate manifests, and leakage-audit files are saved separately under `.forecast/adjustments/`.
+
 ---
 
 ### Phase 5: Post-Forecast Report
@@ -231,6 +268,8 @@ The Critic reads all experiment artifacts and produces:
 
 - Per-model-family best results comparison
 - Per-condition performance breakdown (trend/seasonality/stationarity conditions)
+- Raw vs. adjusted metric comparison when a reasoning skill is locked
+- Leakage-audit status for adjusted outputs
 - Visualization scripts (time-series plots, error distributions)
 - Final markdown forecast report
 
@@ -239,6 +278,8 @@ Generate the final report.
 ```
 
 The report is written to `.forecast/reports/final-report.md`.
+
+If Generative Prediction Reasoning is enabled, the Critic applies only the skill that was locked before test evaluation. It does not create new adjustment rules from test metrics. Final raw and adjusted artifacts are exported under `.forecast/best-model/`.
 
 ---
 
@@ -287,6 +328,21 @@ Create interactively with `/cast-creation`, or write the file manually.
 
 ---
 
+## Tools Reference
+
+Most users do not need to call tools manually. The agents use them to keep the workflow reproducible:
+
+- `forecast_task`: freezes the forecasting task into `.forecast/task.json`.
+- `forecast_state`: manages phases, history, budget, best results, skill confirmation, and handoffs.
+- `generate_model`: creates one deterministic model run and writes run artifacts.
+- `evaluate_experiment`: reads fixed evaluator metrics for a completed run.
+- `forecast_reflect`: records per-experiment reflection and next-step decisions.
+- `forecast_prediction_prior`: validates and imports user-submitted Prediction Prior datasets.
+- `forecast_adjustment_*`: manages Generative Prediction Reasoning policies, source runs, diagnostics, candidate skills, deterministic application, validation, and test evaluation.
+- `export_best_model`: exports the final reusable package, including raw and optional adjusted outputs.
+
+---
+
 
 ## Python Environment
 
@@ -303,7 +359,7 @@ uv run python -c "from castclaw_ml import runner; print('OK')"
 
 Models are sourced from [Time-Series-Library](https://github.com/thuml/Time-Series-Library). Available model families:
 
-- **Statistical**: ARIMA, ETS, Theta
+- **Statistical**: ARIMA, AutoARIMA, ETS, ExponentialSmoothing, SimpleExponentialSmoothing, Holt, HoltWinters, Theta
 - **Deep Learning**: DLinear, NLinear, PatchTST, TimesNet, iTransformer, Autoformer, and 30+ more
 - **Foundation**: Chronos (Amazon), TimesFM (Google), Moirai (Salesforce)
 
