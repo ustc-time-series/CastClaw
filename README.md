@@ -6,13 +6,15 @@
 
 [Homepage](https://ustc-time-series.github.io/cast-claw/) · [GitHub Repo](https://github.com/SkyeGT/CastClaw) · English · [Chinese](./README_zh.md)
 
-**Autonomous. Multi-agent. Fully interactive.**
+**Value-aware. Workflow-learning. Fully interactive.**
 
-Drop in a CSV file and describe what you want to forecast. CastClaw orchestrates three specialized agents across your data—planning task definitions, running parallel model experiments, and generating comparative reports. Built-in reflection learns from each session and grows smarter as you use it.
+Drop in a CSV file and describe what you want to forecast. CastClaw turns interactive task negotiation, offline rule learning, online slow-thinking workflow adaptation, and evidence-backed evaluation into one forecasting workflow. It learns declarative forecasting rules and procedural solving experience, then publishes validated workflows that can be reused, audited, and improved over time.
 
 ![CastClaw Architecture](https://img.shields.io/badge/TUI%20%2B%20CLI-Ready-green) ![Python ML Backend](https://img.shields.io/badge/Python%203.10+-Compatible-blue) ![License](https://img.shields.io/badge/License-MIT-yellow)
 
 ## 🗞️ News
+
+**[2026-07-15]** CastClaw 1.3.0 released: added direct UserPrior submission, new statistical models including ARIMA, AutoARIMA, ETS, Holt, Holt-Winters, and Theta, and more flexible forecasting-window parameters such as stride and forecast_gap. This release also improves dataset splitting by ratio or timestamp, model weight reuse, and persistence for prediction results and evaluation metrics.
 
 **[2026-07-04]** CastClaw adds Prediction Prior workflows: users can provide an existing forecast as a full aligned CSV, skip model search, and let CastClaw validate and improve the prior through deep generative prediction reasoning.
 
@@ -28,38 +30,47 @@ Drop in a CSV file and describe what you want to forecast. CastClaw orchestrates
 
 ## What makes CastClaw different
 
-🗂️ **It plans before it acts**  
-Before running any models, CastClaw drafts a step-by-step forecasting plan and shows it to you. Reorder steps, add domain constraints, then approve—nothing touches your data without explicit consent.
+🗂️ **It negotiates forecasting tasks with value awareness**
 
-📊 **It runs agents in parallel**  
-Upload multiple tables or ask comparative questions. CastClaw automatically assigns a dedicated Forecaster agent to each dataset, runs them in parallel, then synthesizes findings—highlighting where predictions align ([CONSENSUS]) and where they diverge ([UNCERTAIN]).
+Before running any workflow, CastClaw clarifies what to forecast, when to forecast it, and what feedback should be captured. It formalizes the task, models constraints and preferences, detects uncertainty, and records human feedback as reusable memory.
 
-🤖 **It coordinates three specialized agents**  
+📚 **It learns rules and experience before deployment**
 
-- **Planner** — Defines tasks, analyzes data trends & seasonality, generates model recommendations  
-- **Forecaster** — Runs 30+ time-series models in parallel experiments with per-trial reflection  
-- **Critic** — Compares results, builds interactive visualizations, distills final reports
+CastClaw separates offline learning into a rule induction layer and an experience distillation layer. The rule layer extracts data analysis patterns, domain knowledge, and model-tool candidates; the experience layer keeps successful reasoning traces, tool calls, workflow scores, and explainable validation experience.
 
-🧠 **It learns from every session**  
-After each forecasting task, CastClaw reflects on what worked and encodes the pattern into a reusable custom skill. Next time you ask something similar, it calls that skill directly—your personal forecasting assistant gets smarter every time.
+🧠 **It builds reusable forecasting workflows**
 
-💾 **It remembers your preferences**  
-Captures your domain terminology, preferred metrics, output format, and evaluation priorities across sessions. Every conversation builds on what it learned from your previous work.
+Learned rules and experience are summarized into candidate slow-thinking workflows. Each workflow combines forecasting rules, procedural solving experience, model tools, and validation checks so future tasks can start from proven reasoning paths instead of a blank model search.
 
-🧩 **It refines forecasts with validated reasoning skills**
+🔁 **It adapts workflows online with an agent loop**
+
+For a new test set, CastClaw retrieves relevant rules, experience, and human feedback, instantiates a workflow, schedules tools, generates an initial forecast, checks rule consistency, and iterates through reflection and internal correction until a final prediction is produced.
+
+🧩 **It explains forecasts with case-level evidence**
+
+CastClaw keeps candidate workflows, final predictions, and evidence chains together. Results are not only evaluated by forecast accuracy, but also by workflow validity and case-level reasoning so users can trace why a prediction was made.
+
+🚀 **It publishes validated, deployable workflows**
+
+After evaluation, CastClaw turns effective reasoning paths into deployable workflows. These workflows preserve prediction results, metrics, artifacts, and validation records for later analysis, reproduction, visualization, and reuse.
+
+🔍 **It refines forecasts with validated reasoning skills**
 CastClaw can optionally turn forecast-time-visible context—calendar effects, exogenous variables, expert rules, or user-submitted priors—into structured adjustment skills. Each skill is tested on held-out validation data before it can be applied to final forecasts.
 
 🔁 **It can improve your own forecast priors**
 If you already have a forecast from another model or business system, submit it as an aligned Prediction Prior CSV. CastClaw can skip model search, validate the prior, and reuse the Generative Prediction Reasoning workflow to improve it.
 
-🛠️ **It extends with custom skills**  
-Write your own skills—prompt templates or embedded Python/SQL logic—and the agents will call them just like built-in skills. Combined with session learning, CastClaw builds a library tailored to your forecasting workflows.
+🛠️ **It extends with custom rules, tools, and skills**
 
-📦 **It manages full experiment lifecycle**  
-From automated data preprocessing → parallel model training → metric evaluation → constraint satisfaction → visual report generation. Everything is tracked: run logs, eval metrics, failure histories, and performance comparisons.
+Write your own skills—prompt templates or embedded Python/SQL logic—and CastClaw can use them alongside built-in forecasting tools such as CastSense, CastFeat, CastZoo, Evaluator, and Visualizer.
 
-⏸️ **It integrates human-in-the-loop feedback**  
-Mid-experiment, pause and inject domain knowledge: *"The last 30 days show overfitting—try a smaller look-back window."* Forecaster resets counters and adapts the next trial accordingly. No more black-box automation.
+📦 **It manages the full workflow lifecycle**
+
+From task formalization → rule and experience learning → online workflow adaptation → forecast evaluation → workflow publication. Everything is tracked: run logs, eval metrics, failure histories, evidence chains, artifacts, and performance comparisons.
+
+⏸️ **It keeps humans in the loop**
+
+Ask questions, inject domain knowledge, or correct assumptions during the workflow. CastClaw stores the feedback as experience memory and can retrieve it during later workflow adaptation.
 
 ## Quick Start
 
@@ -105,7 +116,7 @@ castclaw
 castclaw --model anthropic/claude-sonnet-4-6
 ```
 
-After the TUI starts, use `Ctrl+1/2/3` to switch agents. In the **Planner** tab (`Ctrl+1`), describe your task, for example:
+After the TUI starts, use `Ctrl+1/2/3` to move between task planning, forecasting execution, and result review views. In the planning view, describe your task, for example:
 
 ```
 Initialize a forecasting session for data/etth1.csv. Target: OT, time column: date,
@@ -152,18 +163,16 @@ export ANTHROPIC_API_KEY=sk-ant-...
 # or: OPENAI_API_KEY, GOOGLE_GENERATIVE_AI_API_KEY, OpenRouter, etc.
 ```
 
-## 🎯 Five-Stage Workflow
+## 🎯 Four-Stage Workflow Learning Framework
 
 ```
-Stage 1 (Planner)    → Task definition & data ingestion
+Stage 1 → Task negotiation & value-aware interaction
         ↓
-Stage 2 (Planner)    → Qualitative & quantitative pre-analysis
+Stage 2 → Offline rule learning & experience distillation
         ↓
-Stage 3 (Planner)    → Model skill generation & review
+Stage 3 → Online slow-thinking reasoning & workflow adaptation
         ↓
-Stage 4 (Forecaster) → Parallel experiment loops + HITL feedback
-        ↓
-Stage 5 (Critic)     → Final report, visualizations, comparisons
+Stage 4 → Result evaluation & workflow publication
 ```
 
 ## 📚 Documentation
@@ -189,11 +198,11 @@ CastClaw/
 
 | Feature                 | CastClaw                           | Traditional Tools     |
 | ----------------------- | ---------------------------------- | --------------------- |
-| Pre-experiment planning | ✅ Show plan before execution       | ❌ Execute immediately |
-| Multi-table parallelism | ✅ Automatic per-table agents       | ❌ Sequential analysis |
-| Session learning        | ✅ Distill skills from interactions | ❌ Stateless           |
-| Human-in-the-loop       | ✅ Pause & inject domain feedback   | ❌ Fully automated     |
-| Constraint management   | ✅ CAST.md for rules & limits       | ❌ Manual enforcement  |
+| Value-aware interaction | ✅ Clarifies goals, uncertainty, and feedback | ❌ Static task input |
+| Rule-experience learning | ✅ Learns declarative rules and procedural experience | ❌ One-off model runs |
+| Workflow adaptation | ✅ Retrieves rules, experience, and feedback online | ❌ Fixed pipelines |
+| Evidence-backed evaluation | ✅ Keeps predictions, metrics, and evidence chains together | ❌ Metrics only |
+| Workflow publication | ✅ Exports validated reusable workflows | ❌ Manual reuse |
 
 
 ## 🤝 Contributing
