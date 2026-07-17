@@ -20,6 +20,8 @@ Drop in a CSV file and describe what you want to forecast. CastClaw turns intera
 
 **[2026-06-18]** CastClaw introduces Generative Prediction Reasoning, a validation-checked rule-skill workflow that refines raw forecasts with forecast-time-visible context while preserving raw and adjusted results separately.
 
+**[2026-06-08]** CastClaw was presented as a poster project at the 2026 BAAI Conference Agent for Science Competition and received a Certificate of Poster Presentation. The team, Xiaoyu Tao, Mingyue Cheng, Tian Gao, Ze Guo, Bokai Pan, Qi Liu, and Shijin Wang, showcased CastClaw's agentic workflow learning and reusable validation pipeline for time-series forecasting.
+
 **[2026-04-30]** CastClaw 1.2.1 released: Critic Agent now automatically exports the best model file, parameters, and related artifacts as a reusable workflow.
 
 **[2026-04-22]** CastClaw 1.2.0 released with Auto mode, Hugging Face mirror support for foundation models such as Chronos, and UI updates.

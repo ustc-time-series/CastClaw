@@ -20,6 +20,8 @@
 
 **[2026-06-18]** CastClaw 新增生成式预测推理能力：系统可在保留原始预测结果的基础上，生成经过验证的规则型 skill，对预测结果进行可审计、可复现的修正。
 
+**[2026-06-08]** CastClaw 项目在 2026 智源大会「Agent for Science」大赛中完成海报展示，并获 Certificate of Poster Presentation 认证。Xiaoyu Tao、Mingyue Cheng、Tian Gao、Ze Guo、Bokai Pan、Qi Liu、Shijin Wang 团队围绕 CastClaw 展示了面向时间序列预测的智能体工作流学习与可复用验证流程。
+
 **[2026-04-30]** CastClaw 1.2.1 版本更新：运行到 Critic Agent 时，会自动导出最佳模型文件、参数等内容，形成一个可以复用的 workflow。
 
 **[2026-04-22]** CastClaw 1.2.0 版本更新：上线 Auto 模式，可在预测前勾选，确认实验参数后自动推进整个流程直至结束；为 Hugging Face 配置镜像，Chronos 等基础模型不再因超时无法正常使用；同时更新了一部分 UI。
