@@ -14,6 +14,8 @@ Drop in a CSV file and describe what you want to forecast. CastClaw turns intera
 
 ## 🗞️ News
 
+**[2026-10-14]** Our demo paper, **“CastClaw: A Human-in-the-Loop Autonomous Agent for Industry Time Series Forecasting,”** by Xiaoyu Tao, Mingyue Cheng, Ze Guo, Bokai Pan, Qi Liu, Shijin Wang, and Enhong Chen, has been accepted to the **IEEE ICDM 2026 Demo Track**.
+
 **[2026-07-15]** CastClaw 1.3.0 released: added direct UserPrior submission, new statistical models including ARIMA, AutoARIMA, ETS, Holt, Holt-Winters, and Theta, and more flexible forecasting-window parameters such as stride and forecast_gap. This release also improves dataset splitting by ratio or timestamp, model weight reuse, and persistence for prediction results and evaluation metrics.
 
 **[2026-07-04]** CastClaw adds Prediction Prior workflows: users can provide an existing forecast as a full aligned CSV, skip model search, and let CastClaw validate and improve the prior through deep generative prediction reasoning.
@@ -219,7 +221,11 @@ MIT License — see [LICENSE](./LICENSE)
 
 - **Issues & Feedback:** [GitHub Issues](https://github.com/SkyeGT/CastClaw/issues)
 - **Documentation:** [English](./docs/en/usage.md) · [Chinese](./docs/zh/usage.md)
-- **WeChat：**![CastClaw Logo](./logo/feedback.jpg)
+- **WeChat Operations Group:** Scan the QR code below to join. The current code is valid through October 21 and will be updated when renewed.
+
+<p align="center">
+  <img src="./logo/feedback.jpg" alt="CastClaw WeChat operations group QR code" width="360">
+</p>
 
 
 ## Acknowledgments
