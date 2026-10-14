@@ -14,6 +14,8 @@
 
 ## 🗞️ 最新动态
 
+**[2026-10-14]** Xiaoyu Tao、Mingyue Cheng、Ze Guo、Bokai Pan、Qi Liu、Shijin Wang、Enhong Chen 的 Demo 论文 **《CastClaw: A Human-in-the-Loop Autonomous Agent for Industry Time Series Forecasting》** 获 **IEEE ICDM 2026 Demo Track** 接收。
+
 **[2026-07-15]** CastClaw 1.3.0 版本上线：支持直接提交 UserPrior，充分利用已有预测先验，无需重复进行模型搜索和训练；新增 ARIMA、AutoARIMA、ETS、Holt、Holt-Winters、Theta 等统计模型；新增 stride、forecast_gap 等参数，支持更复杂的预测窗口设置。本次更新同时优化了按比例或时间戳进行数据集切分、模型权重复用机制，以及预测结果与评估指标的保存，方便后续分析、复现和可视化。
 
 **[2026-07-04]** CastClaw 新增用户自主提交预测先验功能：用户可以提交已有预测结果作为完整对齐 CSV，跳过模型搜索流程，并通过深度生成式预测推理对预测先验进行验证与优化。
@@ -220,7 +222,11 @@ MIT License — 详见 [LICENSE](./LICENSE)
 
 - **问题与反馈：** [GitHub Issues](https://github.com/SkyeGT/CastClaw/issues)
 - **文档：** [English](./docs/en/usage.md) · [中文](./docs/zh/usage.md)
-- **微信：**![CastClaw Logo](./logo/feedback.jpg)
+- **CastClaw 运营群：** 扫描下方二维码加入。当前二维码有效期至 10 月 21 日，更新后会及时替换。
+
+<p align="center">
+  <img src="./logo/feedback.jpg" alt="CastClaw 运营群二维码" width="360">
+</p>
 
 ## 致谢
 
